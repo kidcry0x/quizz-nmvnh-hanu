@@ -81,7 +81,7 @@ function showQuestion(chuong, checkBox) {
   curQuestion.answers.forEach(answer => {
     const button = document.createElement('button');
     button.innerHTML = answer.text;
-    button.style.fontSize = "15px"
+    button.style.fontSize = "15px";
     button.classList.add('btn');
     answerButtons.appendChild(button);
     if (answer.correct) {
@@ -112,7 +112,7 @@ function selectAnswer(e) {
 
   selectedAnswers.push(selectedAnswer);
 
-  console.log(selectedAnswers);
+  // console.log(selectedAnswers);
 
   if (isCorrect) {
     selectedBtn.classList.add('correct');
