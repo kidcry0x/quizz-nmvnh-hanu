@@ -78,9 +78,22 @@ function showQuestion(chuong, checkBox) {
 
   questionElement.innerHTML = questionNo + '. ' + curQuestion.question;
 
-  curQuestion.answers.forEach(answer => {
+  curQuestion.answers.forEach((answer, index) => {
     const button = document.createElement('button');
-    button.innerHTML = answer.text;
+    switch (index) {
+      case 0:
+        button.innerHTML = `A. ${answer.text}`;
+      break;
+      case 1:
+        button.innerHTML = `B. ${answer.text}`;
+      break;
+      case 2:
+        button.innerHTML = `C. ${answer.text}`;
+      break;
+      case 3:
+        button.innerHTML = `D. ${answer.text}`;
+      break;
+    }
     button.style.fontSize = "15px";
     button.classList.add('btn');
     answerButtons.appendChild(button);
