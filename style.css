@@ -270,14 +270,14 @@ body {
   background: #312c31;
   color: #fff;
   font-weight: 500;
-  font-size: 18px;
-  width: 150px;
+  font-size: 15px;
+  width: 80px;
   border: 0;
   padding: 10px;
   margin: 20px auto 0;
   border-radius: 4px;
   cursor: pointer;
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   margin-top: -5px;
 }
