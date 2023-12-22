@@ -6,19 +6,23 @@ const quizEl = document.querySelector('.quiz');
 let curQuestionIdx = 0;
 let score = 0;
 let selectedAnswers = [];
+let showAnswer = false;
 
-function startQuiz(chuong, checkBox) {
+function startQuiz(chuong, checkBox1, checkBox2) {
   curQuestionIdx = 0;
   score = 0;
   nextButton.innerHTML = 'Next';
   nextButton.style.fontSize = "18px";
-  showQuestion(chuong, checkBox);
+  showQuestion(chuong, checkBox1, checkBox2);
 }
 
-function showQuestion(chuong, checkBox) {
-
+function showQuestion(chuong, checkBox1, checkBox2) {
   resetState();
 
+  if (checkBox2) {
+    showAnswer = checkBox2;
+  };
+  
   if (parseInt(chuong)) {
     switch (parseInt(chuong)) {
       case 1:
@@ -66,12 +70,11 @@ function showQuestion(chuong, checkBox) {
       break;
     };
 
-    if (checkBox) {
+    if (checkBox1) {
       shuffleArray(window._questions);
     };
   };
 
-  
   let curQuestion = window._questions[curQuestionIdx];
 
   let questionNo = curQuestionIdx + 1;
@@ -93,13 +96,19 @@ function showQuestion(chuong, checkBox) {
       case 3:
         button.innerHTML = `D. ${answer.text}`;
       break;
-    }
+    };
+
     button.style.fontSize = "15px";
     button.classList.add('btn');
     answerButtons.appendChild(button);
+
     if (answer.correct) {
+      if (showAnswer) {
+        button.style.color = "#FF0000";
+      };
       button.dataset.correct = answer.correct;
     }
+    
     button.addEventListener('click', selectAnswer);
   });
 }

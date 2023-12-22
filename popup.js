@@ -4,10 +4,11 @@ function openPopup() {
 };
 
 function closePopup() {
-    var selectedChapter = document.getElementById('chapterSelect').value;
-    var checkboxValue = document.getElementById('morning').checked;
+    const selectedChapter = document.getElementById('chapterSelect').value;
+    const shuffle = document.getElementById('shuffle').checked;
+    const showAnswers = document.getElementById('showAnswers').checked;
 
-    startQuiz(selectedChapter, checkboxValue);
+    startQuiz(selectedChapter, shuffle, showAnswers);
 
     document.getElementById('popup').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
