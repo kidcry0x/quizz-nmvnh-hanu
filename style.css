@@ -157,9 +157,9 @@ body {
     color: #0056b3; /* Màu chữ thay đổi khi hover */
 }
 
-  .checkbox-wrapper-4 * {
-    margin-left: 2px;
-    margin-bottom: 5px;
+  .checkbox-wrapper-4 {
+    margin-left: 10px;
+    margin-bottom: 20px;
     box-sizing: border-box;
   }
 
