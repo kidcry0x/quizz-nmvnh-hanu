@@ -5,15 +5,24 @@ const quizEl = document.querySelector('.quiz');
 
 let curQuestionIdx = 0;
 let score = 0;
+let numberHasAnswer = 0;
 let selectedAnswers = [];
 let showAnswer = false;
 
 function startQuiz(chuong, checkBox1, checkBox2) {
   curQuestionIdx = 0;
   score = 0;
+  numberHasAnswer = 0;
+  selectedAnswers = []
+  showAnswer = false;
   nextButton.innerHTML = 'Next';
   nextButton.style.fontSize = "18px";
+
+  replayButton.style.display = "block";
   showQuestion(chuong, checkBox1, checkBox2);
+
+  setTotalAnswerCorrect(score, window._questions.length);
+  setTotalAnswer(numberHasAnswer, window._questions.length);
 }
 
 function showQuestion(chuong, checkBox1, checkBox2) {
@@ -24,6 +33,9 @@ function showQuestion(chuong, checkBox1, checkBox2) {
   };
   
   if (parseInt(chuong)) {
+
+    setChapter(parseInt(chuong));
+
     switch (parseInt(chuong)) {
       case 1:
         const newArray = [...CHUONG_1, ...CHUONG_2, ...CHUONG_3, ...CHUONG_4, ...CHUONG_5]
@@ -134,11 +146,12 @@ function selectAnswer(e) {
 
   selectedAnswers.push(selectedAnswer);
 
-  // console.log(selectedAnswers);
+  numberHasAnswer++;
 
   if (isCorrect) {
     selectedBtn.classList.add('correct');
     score++;
+    setTotalAnswerCorrect(score, window._questions.length);
   } else {
     selectedBtn.classList.add('incorrect');
   }
@@ -150,14 +163,17 @@ function selectAnswer(e) {
   });
 
   nextButton.style.display = 'block';
+
+  setTotalAnswer(numberHasAnswer, window._questions.length);
 }
 
 function showScore() {
   resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${window._questions.length}!`;
+  questionElement.innerHTML = `You scored ${score} out of ${window._questions.length}! (${Math.ceil((score/window._questions.length) * 100)}%)`;
   nextButton.innerHTML = 'Play Again';
   nextButton.style.fontSize = "18px";
   nextButton.style.display = 'block';
+  replayButton.style.display = "none";
 }
 
 function handleNextButton() {
